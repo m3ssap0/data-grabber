@@ -32,7 +32,7 @@ if(sizeof($_GET) < 1 && sizeof($_POST) < 1) {
 
    // Creating database connection.
    $conn = new mysqli($db_server_name, $db_username, $db_password, $db_name);
-   if ($conn->connect_error) {
+   if($conn->connect_error) {
       die('Error in connecting to the database!');
    }
 
@@ -67,7 +67,7 @@ if(sizeof($_GET) < 1 && sizeof($_POST) < 1) {
    // Inserting grabbed request data into database.
    $stmt = $conn->prepare($insert_grabbed_request);
    $stmt->bind_param('sssss', $request_method, $ip_remote_addr, $ip_forwarded_for, $remote_port, $user_agent);
-   if ($stmt->execute() === FALSE) {
+   if($stmt->execute() === FALSE) {
       die('Error in inserting request data into database!');
    }
    $request_id = $conn->insert_id;
@@ -82,7 +82,7 @@ if(sizeof($_GET) < 1 && sizeof($_POST) < 1) {
       if(sizeof($data_content_array) > 0) {
          foreach($data_content_array as $key => $value) {
             $stmt->bind_param('dsss', $request_id, $data_content_type, $conn->real_escape_string($key), $conn->real_escape_string($value));
-            if ($stmt->execute() === FALSE) {
+            if($stmt->execute() === FALSE) {
                die('Error in inserting request content into database!');
             }
          }
