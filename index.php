@@ -80,12 +80,12 @@ if(sizeof($_GET) < 1 && sizeof($_POST) < 1) {
    $data_content = array('QUERY_PARAMETER' => $_GET, 'BODY_PARAMETER' => $_POST, 'COOKIE' => $_COOKIE, 'HEADER' => $headers);
    foreach($data_content as $data_content_type => $data_content_array) {
       if(sizeof($data_content_array) > 0) {
-	     foreach($data_content_array as $key => $value) {
+         foreach($data_content_array as $key => $value) {
 		    $stmt->bind_param('dsss', $request_id, $data_content_type, $conn->real_escape_string($key), $conn->real_escape_string($value));
             if ($stmt->execute() === FALSE) {
                die('Error in inserting request content into database!');
             }
-	     }
+         }
       }
    }
    
