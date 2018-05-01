@@ -61,7 +61,7 @@ if(sizeof($_GET) < 1 && sizeof($_POST) < 1) {
    // Determining the user agent.
    $user_agent = NULL;
    if(isset($_SERVER['HTTP_USER_AGENT'])) {
-	  $user_agent = $conn->real_escape_string($_SERVER['HTTP_USER_AGENT']);
+      $user_agent = $conn->real_escape_string($_SERVER['HTTP_USER_AGENT']);
    }
    
    // Inserting grabbed request data into database.
