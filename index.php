@@ -27,7 +27,7 @@ $insert_grabbed_content = 'INSERT INTO grabbed_content (grabbed_content_fk, cont
 
 // Checking the presence of data.
 if(sizeof($_GET) < 1 && sizeof($_POST) < 1) {
-	die('No data!');
+   die('No data!');
 } else {
 
    // Creating database connection.
@@ -39,23 +39,23 @@ if(sizeof($_GET) < 1 && sizeof($_POST) < 1) {
    // Determining the HTTP request method.
    $request_method = 'UNKNOWN';
    if(isset($_SERVER['REQUEST_METHOD'])) {
-	   $request_method = $conn->real_escape_string($_SERVER['REQUEST_METHOD']);
+      $request_method = $conn->real_escape_string($_SERVER['REQUEST_METHOD']);
    }
    
    // Determining the remote IP addresses.
    $ip_remote_addr = NULL;
    if(isset($_SERVER['REMOTE_ADDR'])) {
-	  $ip_remote_addr = $conn->real_escape_string($_SERVER['REMOTE_ADDR']);
+      $ip_remote_addr = $conn->real_escape_string($_SERVER['REMOTE_ADDR']);
    }
    $ip_forwarded_for = NULL;
    if(isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-	  $ip_forwarded_for = $conn->real_escape_string($_SERVER['HTTP_X_FORWARDED_FOR']);
+      $ip_forwarded_for = $conn->real_escape_string($_SERVER['HTTP_X_FORWARDED_FOR']);
    }
    
    // Determining the remote port.
    $remote_port = NULL;
    if(isset($_SERVER['REMOTE_PORT'])) {
-	  $remote_port = $conn->real_escape_string($_SERVER['REMOTE_PORT']);
+      $remote_port = $conn->real_escape_string($_SERVER['REMOTE_PORT']);
    }
    
    // Determining the user agent.
@@ -81,7 +81,7 @@ if(sizeof($_GET) < 1 && sizeof($_POST) < 1) {
    foreach($data_content as $data_content_type => $data_content_array) {
       if(sizeof($data_content_array) > 0) {
          foreach($data_content_array as $key => $value) {
-		    $stmt->bind_param('dsss', $request_id, $data_content_type, $conn->real_escape_string($key), $conn->real_escape_string($value));
+            $stmt->bind_param('dsss', $request_id, $data_content_type, $conn->real_escape_string($key), $conn->real_escape_string($value));
             if ($stmt->execute() === FALSE) {
                die('Error in inserting request content into database!');
             }
